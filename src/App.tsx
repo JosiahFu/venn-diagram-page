@@ -24,15 +24,23 @@ function App() {
     const [input2, setInput2] = useState('');
     const [input3, setInput3] = useState('');
     const [input4, setInput4] = useState('');
+    const [output, setOutput] = useState(['','','','']);
+    
+    const handleClick = () => {
+        setActivated(true);
+        // Set outputs here
+        setOutput(['1', '2', '3', '4'])
+    }
+
     return (
         <main>
             <div className={activated ? 'circles activated' : 'circles'}>
-                <Circle input={input1} setInput={setInput1} output='Option 1' />
-                <Circle input={input2} setInput={setInput2} output='Option 2' />
-                <Circle input={input3} setInput={setInput3} output='Option 3' />
-                <Circle input={input4} setInput={setInput4} output='Option 4' />
+                <Circle input={input1} setInput={setInput1} output={output[0]} />
+                <Circle input={input2} setInput={setInput2} output={output[1]} />
+                <Circle input={input3} setInput={setInput3} output={output[2]} />
+                <Circle input={input4} setInput={setInput4} output={output[3]} />
             </div>
-            <div className="button" onClick={() => setActivated(true)}>Press</div>
+            <div className="button" onClick={handleClick}>Press</div>
         </main>
     );
 }
