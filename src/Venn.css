@@ -1,29 +1,32 @@
 .venn {
     position: relative;
+    height: 80vmin;
+    width: 80vmin;
 }
 .circles {
-    height: 900px;
-    width: 900px;    
+    height: 100%;
+    width: 100%;
     position: relative;
     transition: 2s;
-    --distance: 120px;
+    --distance: 40%;
+    --content-padding: 3em;
 }
 
 .circles.activated {
     transform: rotate(360deg);
-    --distance: 300px;
+    --distance: calc(50% + var(--content-padding));
 }
 
 .circle {
-    height: 300px;
-    width: 300px;
+    height: 50%;
+    width: 50%;
     border-radius: 50%;
     background-color: #7f7f7f7f;
     position: absolute;
-    top: 300px;
-    left: 300px;
+    top: 25%;
+    left: 25%;
     transition: transform 2s, background-color 1s 2s;
-    border: 5px solid white;
+    border: 0.4em solid white;
     box-sizing: border-box;
     /* display: flex;
     flex-flow: column nowrap;
@@ -32,10 +35,11 @@
     mix-blend-mode: screen;
     --content-left: 50%;
     --content-top: 50%;
+    padding: var(--content-padding);
 }
 
 .activated .circle {
-    background-color: transparent !important;
+    /* background-color: transparent !important; */
 }
 
 .circle:nth-child(1) {
