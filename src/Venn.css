@@ -2,8 +2,8 @@
     position: relative;
 }
 .circles {
-    height: 300px;
-    width: 300px;    
+    height: 900px;
+    width: 900px;    
     position: relative;
     transition: 2s;
     --distance: 120px;
@@ -20,43 +20,56 @@
     border-radius: 50%;
     background-color: #7f7f7f7f;
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 300px;
+    left: 300px;
     transition: transform 2s, background-color 1s 2s;
-    display: flex;
+    border: 5px solid white;
+    box-sizing: border-box;
+    /* display: flex;
     flex-flow: column nowrap;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
+    mix-blend-mode: screen;
+    --content-left: 50%;
+    --content-top: 50%;
 }
 
 .activated .circle {
-    background-color: transparent;
+    background-color: transparent !important;
 }
 
 .circle:nth-child(1) {
     transform: translateY(calc(-1*var(--distance)));
+    background-color: #ffe83a7f;
+    --content-top: 30%;
 }
 .circle:nth-child(2) {
     transform: translateX(calc(-1*var(--distance)));
+    background-color: #b8fa3f7f;
+    --content-left: 30%;
 }
 .circle:nth-child(3) {
     transform: translateX(var(--distance));
+    background-color: #fa664f7f;
+    --content-left: 70%;
 }
 .circle:nth-child(4) {
     transform: translateY(var(--distance));
+    background-color: #41f8c77f;
+    --content-top: 70%;
 }
 
 .circle input, .circle .output {
     position: absolute;
-    left: 50%;
-    top: 50%;
     transform: translate(-50%, -50%);
 }
 
 .circle input {
+    left: var(--content-left);
+    top: var(--content-top);
     border: none;
     outline: none;
-    background-color: lightgray;
+    background-color: #ffffffbf;
     padding: 5px;
     border-radius: 5px;
     text-align: center;
@@ -69,6 +82,8 @@
 }
 
 .circle .output {
+    left: 50%;
+    top: 50%;
     opacity: 0;
     transition: 1s 2s;
 }
@@ -82,12 +97,13 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    background-color: #7f7f7f;
+    /* background-color: #bfbfbfbf;
     padding: 10px;
-    border-radius: 40px;
+    border-radius: 40px; */
     cursor: pointer;
 }
 
 .button:hover {
-    background-color: #9f9f9f;
+    /* background-color: #9f9f9fbf; */
+    color: gray;
 }
