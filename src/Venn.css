@@ -80,7 +80,7 @@
 
 .circle .dropdown {
     position: absolute;
-    transform: translate(-50%, -1em);
+    transform: translate(-50%, -50%);
     left: var(--content-left);
     top: var(--content-top);
     width: 12em;
@@ -106,6 +106,8 @@
 
 .dropdown-option-list {
     margin-top: 5px;
+    position: absolute;
+    width: 100%;
     display: none;
 }
 
