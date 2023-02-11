@@ -2,7 +2,15 @@
     position: relative;
     height: 80vmin;
     width: 80vmin;
+    font-size: 0.5em;
 }
+
+@media screen and (min-width: 700px) {
+    .venn {
+        font-size: 1em;
+    }
+}
+
 .circles {
     height: 100%;
     width: 100%;
@@ -42,8 +50,8 @@
     border-color: var(--color)
 }
 
-.circle:focus-within {
-    z-index: 2;
+.circle.focused {
+    z-index: 1;
 }
 
 .circle:nth-child(1) {
@@ -51,16 +59,19 @@
     --color: #ffe83a7f;
     --content-top: 30%;
 }
+
 .circle:nth-child(2) {
     transform: translateX(calc(-1*var(--distance)));
     --color: #b8fa3f7f;
     --content-left: 30%;
 }
+
 .circle:nth-child(3) {
     transform: translateX(var(--distance));
     --color: #fa664f7f;
     --content-left: 70%;
 }
+
 .circle:nth-child(4) {
     transform: translateY(var(--distance));
     --color: #41f8c77f;
@@ -90,21 +101,27 @@
     /* text-align: center; */
     width: 100%;
     box-sizing: border-box;
+    font-size: inherit;
 }
 
 .dropdown-option-list {
     margin-top: 5px;
+    display: none;
+}
+
+.focused .dropdown-option-list {
+    display: block;
 }
 
 .dropdown-option {
     padding: 5px;
     margin: 2px 0;
-    background-color: #ffffffbf;
+    background-color: #ffffffdf;
     cursor: pointer;
 }
 
 .dropdown-option:hover {
-    background-color: #dfdfdfbf;
+    background-color: #dfdfdfdf;
 }
 
 .dropdown-option:first-child {
@@ -140,6 +157,7 @@
     border-radius: 40px; */
     cursor: pointer;
     transition: 1s;
+    z-index: 2;
 }
 
 .button:hover {

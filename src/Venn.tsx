@@ -3,13 +3,13 @@ import './Venn.css';
 
 type stringSet = readonly [string, string, string, string];
 
-function Dropdown({options, value, setValue}: {
+function Dropdown({ options, value, setValue, focused, setFocused }: {
     options: string[],
     value: string,
-    setValue: (value: string) => void
+    setValue: (value: string) => void,
+    focused: boolean,
+    setFocused: (focused: boolean) => void
 }) {
-    const [expanded, setExpanded] = useState(false);
-
     const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
         setValue(event.target.value)
     }
@@ -19,38 +19,39 @@ function Dropdown({options, value, setValue}: {
             <input
                 value={value}
                 onChange={handleInput}
-                onFocus={() => setExpanded(true)}
-                onBlur={() => setTimeout(() => setExpanded(false), 100)} // Required for some reason?
+                onFocus={() => setFocused(true)}
+                onBlur={() => setFocused(false)}
             />
-            {expanded && <div className="dropdown-option-list">
+            <div className="dropdown-option-list">
                 {options
                     .filter(e => e.includes(value))
                     .map((e, i) => <div
                         key={i}
                         className="dropdown-option"
-                        onClick={() => setValue(e)}>{e}
+                        onMouseDown={() => setValue(e)}>{e}
                     </div>)}
-            </div>}
+            </div>
         </div>
     )
 }
 
-function Circle({input, setInput, output, options}: {
+function Circle({ input, setInput, output, options }: {
     input: string,
     setInput: (input: string) => void,
     output: string,
     options: string[]
 }) {
+    const [focused, setFocused] = useState(false);
 
     return (
-        <div className="circle">
-            <Dropdown options={options} value={input} setValue={setInput} />
+        <div className={focused ? 'circle focused' : 'circle'}>
+            <Dropdown options={options} value={input} setValue={setInput} focused={focused} setFocused={setFocused} />
             <div className="output">{output}</div>
         </div>
     );
 }
 
-function Venn({options, processInput}: {
+function Venn({ options, processInput }: {
     options: [string[], string[], string[], string[]],
     processInput: (input: stringSet) => stringSet
 }) {
@@ -59,8 +60,8 @@ function Venn({options, processInput}: {
     const [input2, setInput2] = useState('');
     const [input3, setInput3] = useState('');
     const [input4, setInput4] = useState('');
-    const [output, setOutput] = useState<stringSet>(['','','','']);
-    
+    const [output, setOutput] = useState<stringSet>(['', '', '', '']);
+
     const handleClick = () => {
         setActivated(true);
         // Set outputs here
