@@ -63,8 +63,10 @@ function Venn({ options, processInput }: {
     const [output, setOutput] = useState<stringSet>(['', '', '', '']);
 
     const handleClick = () => {
+        if (activated)
+            return;
+
         setActivated(true);
-        // Set outputs here
         setOutput(processInput([input1, input2, input3, input4]))
     }
 
@@ -76,7 +78,7 @@ function Venn({ options, processInput }: {
                 <Circle input={input3} setInput={setInput3} output={output[2]} options={options[2]} />
                 <Circle input={input4} setInput={setInput4} output={output[3]} options={options[3]} />
             </div>
-            <div className="button" onClick={handleClick}>Press</div>
+            <div className="button" onClick={handleClick}>Generate</div>
         </div>
     );
 }
