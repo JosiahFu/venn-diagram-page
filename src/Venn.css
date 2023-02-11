@@ -158,6 +158,12 @@
     cursor: pointer;
     transition: 1s;
     z-index: 2;
+    height: 4em;
+    width: 4em;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
 }
 
 .button:hover {
