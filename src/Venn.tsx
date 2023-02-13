@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Venn.css';
+import './Venn.scss';
 
 type stringSet = readonly [string, string, string, string];
 
