@@ -2,12 +2,20 @@
     position: relative;
     height: 80vmin;
     width: 80vmin;
+    font-size: 0.5em;
 }
+
+@media screen and (min-width: 700px) {
+    .venn {
+        font-size: 1em;
+    }
+}
+
 .circles {
     height: 100%;
     width: 100%;
     position: relative;
-    transition: 2s;
+    transition: 2s cubic-bezier(.1, .7, .7, 1);
     --distance: 40%;
     --content-padding: 3em;
 }
@@ -25,7 +33,7 @@
     position: absolute;
     top: 25%;
     left: 25%;
-    transition: transform 2s, background-color 1s 2s, border-color 1s 2s;
+    transition: transform 2s cubic-bezier(.1, .5, .7, 2.5), background-color 1s 2s, border-color 1s 2s;
     border: 0.4em solid white;
     box-sizing: border-box;
     display: flex;
@@ -42,8 +50,8 @@
     border-color: var(--color)
 }
 
-.circle:focus-within {
-    z-index: 2;
+.circle.focused {
+    z-index: 1;
 }
 
 .circle:nth-child(1) {
@@ -51,16 +59,19 @@
     --color: #ffe83a7f;
     --content-top: 30%;
 }
+
 .circle:nth-child(2) {
     transform: translateX(calc(-1*var(--distance)));
     --color: #b8fa3f7f;
     --content-left: 30%;
 }
+
 .circle:nth-child(3) {
     transform: translateX(var(--distance));
     --color: #fa664f7f;
     --content-left: 70%;
 }
+
 .circle:nth-child(4) {
     transform: translateY(var(--distance));
     --color: #41f8c77f;
@@ -69,7 +80,7 @@
 
 .circle .dropdown {
     position: absolute;
-    transform: translate(-50%, -1em);
+    transform: translate(-50%, -50%);
     left: var(--content-left);
     top: var(--content-top);
     width: 12em;
@@ -90,21 +101,29 @@
     /* text-align: center; */
     width: 100%;
     box-sizing: border-box;
+    font-size: inherit;
 }
 
 .dropdown-option-list {
     margin-top: 5px;
+    position: absolute;
+    width: 100%;
+    display: none;
+}
+
+.focused .dropdown-option-list {
+    display: block;
 }
 
 .dropdown-option {
     padding: 5px;
     margin: 2px 0;
-    background-color: #ffffffbf;
+    background-color: #ffffffdf;
     cursor: pointer;
 }
 
 .dropdown-option:hover {
-    background-color: #dfdfdfbf;
+    background-color: #dfdfdfdf;
 }
 
 .dropdown-option:first-child {
@@ -139,7 +158,14 @@
     padding: 10px;
     border-radius: 40px; */
     cursor: pointer;
-    transition: 1s;
+    transition: 0.5s;
+    z-index: 2;
+    height: 4em;
+    width: 4em;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
 }
 
 .button:hover {
