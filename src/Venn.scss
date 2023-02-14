@@ -3,10 +3,8 @@
     height: 80vmin;
     width: 80vmin;
     font-size: 0.5em;
-}
 
-@media screen and (min-width: 700px) {
-    .venn {
+    @media screen and (min-width: 700px) {
         font-size: 1em;
     }
 }
@@ -18,7 +16,7 @@
     transition: 2s cubic-bezier(.1, .7, .7, 1);
     --distance: 40%;
     --content-padding: 3em;
-    
+
     .activated & {
         transform: rotate(360deg);
         --distance: calc(50% + var(--content-padding));
@@ -47,43 +45,22 @@
     &.focused {
         z-index: 1;
     }
-    
-    @mixin adjside($childn, $translate-axis, $translate-multiplier, $content-axis, $content-distance, $color) {
+
+    @mixin adjside($childn, $translate-x-mult, $translate-y-mult, $color) {
         &:nth-child(#{$childn}) {
-            transform: translate#{$translate-axis}(calc(#{$translate-multiplier}*var(--distance)));
+            transform: translate(
+                calc(#{$translate-x-mult} * var(--distance)),
+                calc(#{$translate-y-mult} * var(--distance)));
             --color: #{$color};
-            --content-#{$content-axis}: #{$content-distance};
+            --content-top: calc(50% + 20% * #{$translate-y-mult});
+            --content-left: calc(50% + 20% * #{$translate-x-mult});
         }
     }
-    
-    @include adjside(1, Y, -1, top, 30%, #ffe83a7f);
-    @include adjside(2, X, -1, top, 30%, #b8fa3f7f);
-    @include adjside(3, X, 1, top, 70%, #fa664f7f);
-    @include adjside(4, Y, 1, top, 70%, #41f8c77f);
 
-    // &:nth-child(1) {
-    //     transform: translateY(calc(-1*var(--distance)));
-    //     --color: #ffe83a7f;
-    //     --content-top: 30%;
-    // }
-
-    // &:nth-child(2) {
-    //     transform: translateX(calc(-1*var(--distance)));
-    //     --color: #b8fa3f7f;
-    //     --content-left: 30%;
-    // }
-
-    // &:nth-child(3) {
-    //     transform: translateX(var(--distance));
-    //     --color: #fa664f7f;
-    //     --content-left: 70%;
-    // }
-
-    // &:nth-child(4) {
-    //     transform: translateY(var(--distance));
-    //     --color: #41f8c77f;
-    //     --content-top: 70%;
-    // }
+    @include adjside(1, 0, -1, #ffe83a7f);
+    @include adjside(2, -1, 0, #b8fa3f7f);
+    @include adjside(3, 1, 0, #fa664f7f);
+    @include adjside(4, 0, 1, #41f8c77f);
 
     .output {
         left: 50%;
@@ -93,11 +70,11 @@
         text-align: justify;
         /* text-align-last: center; */
     }
-    
+
     .activated & {
         background-color: transparent;
         border-color: var(--color);
-        
+
         .output {
             opacity: 1;
         }
@@ -136,7 +113,7 @@
         position: absolute;
         width: 100%;
         display: none;
-        
+
         .focused & {
             display: block;
         }
@@ -181,11 +158,11 @@
     flex-flow: column nowrap;
     align-items: center;
     justify-content: center;
-    
+
     &:hover {
         color: gray;
     }
-    
+
     .activated & {
         color: transparent;
         cursor: initial;
