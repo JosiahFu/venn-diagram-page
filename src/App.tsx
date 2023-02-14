@@ -28,7 +28,7 @@ function App() {
         <main>
             <Venn processInput={processInput} options={[
                 ['Video Games', 'Sports', 'Music', 'Electronics'],
-                ['EKS 1 - Linear Functions', 'EKS 2 - Exponential Functions', 'EKS 3 - Logarithmic Functions', 'EKS 4 - Rational Functions']
+                ['EKS 1 - Linear Functions', 'EKS 2 - Exponential Functions', 'EKS 3 - Logarithmic Functions', 'EKS 4 - Rational Functions'],
                 ['Computer Engineer', 'Data Scientist', 'Computer Programmer'],
                 ['Data specialists pro sports', 'Programming', 'Storytelling with data']
             ]} />
